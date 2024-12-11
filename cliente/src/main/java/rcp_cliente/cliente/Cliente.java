@@ -6,13 +6,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.ejb.Singleton;
-import jakarta.ejb.Startup;
-import service.HelloService;
+import interface_service.HelloService;
 
-@Singleton
-@Startup
 public class Cliente {
 	/*
 	@PostConstruct
