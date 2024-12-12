@@ -81,7 +81,7 @@ public class frontend extends JFrame {
 		JButton btRegistrar = new JButton("Registrarse");
 		btRegistrar.setForeground(Color.BLUE);
 		btRegistrar.setFont(new Font("Cascadia Code", Font.BOLD, 11));
-		btRegistrar.setBackground(new Color(0, 0, 160));
+		btRegistrar.setBackground(new Color(115, 0, 230));
 
 		btRegistrar.setBounds(132, 243, 130, 42);
 		panel.add(btRegistrar);
@@ -133,6 +133,7 @@ public class frontend extends JFrame {
 		contentPane.add(tbClientes);
 
 		btListar = new JButton("Listar");
+		btListar.setBackground(new Color(115, 0, 230));
 
 		btListar.setBounds(75, 402, 98, 38);
 		contentPane.add(btListar);
