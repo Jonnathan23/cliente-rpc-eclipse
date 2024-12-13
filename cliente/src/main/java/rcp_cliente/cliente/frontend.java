@@ -74,22 +74,22 @@ public class frontend extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(80, 68, 187)));
 		panel.setBackground(new Color(80, 68, 187));
-		panel.setBounds(189, 53, 373, 295);
+		panel.setBounds(189, 53, 567, 295);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
 		JButton btRegistrar = new JButton("Registrarse");
 		btRegistrar.setForeground(Color.BLUE);
 		btRegistrar.setFont(new Font("Cascadia Code", Font.BOLD, 11));
-		btRegistrar.setBackground(new Color(115, 0, 230));
+		btRegistrar.setBackground(new Color(255, 255, 255));
 
-		btRegistrar.setBounds(132, 243, 130, 42);
+		btRegistrar.setBounds(216, 236, 130, 42);
 		panel.add(btRegistrar);
 
 		txtName = new JTextField();
 		txtName.setForeground(new Color(39, 33, 92));
 		txtName.setBackground(new Color(147, 139, 214));
-		txtName.setBounds(112, 32, 226, 42);
+		txtName.setBounds(189, 46, 226, 42);
 		panel.add(txtName);
 		txtName.setColumns(10);
 
@@ -98,29 +98,29 @@ public class frontend extends JFrame {
 		panel.add(lbSignUp);
 
 		lblNewLabel = new JLabel("Email");
-		lblNewLabel.setBounds(21, 97, 65, 42);
+		lblNewLabel.setBounds(21, 97, 120, 42);
 		panel.add(lblNewLabel);
 
 		lblNewLabel_1 = new JLabel("Nombre");
-		lblNewLabel_1.setBounds(21, 46, 65, 42);
+		lblNewLabel_1.setBounds(21, 46, 120, 42);
 		panel.add(lblNewLabel_1);
 
 		txtEmail = new JTextField();
 		txtEmail.setForeground(new Color(39, 33, 92));
 		txtEmail.setColumns(10);
 		txtEmail.setBackground(new Color(147, 139, 214));
-		txtEmail.setBounds(112, 97, 226, 42);
+		txtEmail.setBounds(189, 98, 226, 42);
 		panel.add(txtEmail);
 
 		txtPassword = new JTextField();
 		txtPassword.setForeground(new Color(39, 33, 92));
 		txtPassword.setColumns(10);
 		txtPassword.setBackground(new Color(147, 139, 214));
-		txtPassword.setBounds(112, 161, 226, 42);
+		txtPassword.setBounds(189, 162, 226, 42);
 		panel.add(txtPassword);
 
 		JLabel lblContrasea = new JLabel("Contraseña");
-		lblContrasea.setBounds(21, 161, 65, 42);
+		lblContrasea.setBounds(21, 161, 120, 42);
 		panel.add(lblContrasea);
 
 		String[] columnNames = { "Nombre", "Correo" };
@@ -128,11 +128,12 @@ public class frontend extends JFrame {
 		tableModel.addRow(new Object[]{"Nombre", "Correo"});
 
 		tbClientes = new JTable(tableModel);
-		tbClientes.setBounds(78, 450, 373, 57);
+		tbClientes.setBounds(78, 450, 551, 240);
 
 		contentPane.add(tbClientes);
 
 		btListar = new JButton("Listar");
+		btListar.setForeground(new Color(255, 255, 255));
 		btListar.setBackground(new Color(115, 0, 230));
 
 		btListar.setBounds(75, 402, 98, 38);
@@ -154,7 +155,7 @@ public class frontend extends JFrame {
 				newUser.put("us_email", email);
 				newUser.put("us_password", password);
 
-				if (name != null) {
+				if (name != null && email != null && password != null) {
 					String response = connectionServer.registryClient(name);
 					String responseCreate = connectionServer.signUpUser(newUser);
 					lbSignUp.setText(response);
@@ -166,6 +167,9 @@ public class frontend extends JFrame {
 					};
 
 					scheduler.schedule(task, 3, TimeUnit.SECONDS);
+					//txtName.setText("");
+					//txtEmail.setText("");
+					//txtPassword.setText("");
 
 				} else {
 					lbSignUp.setText("Ocurrio un error...");
@@ -179,6 +183,8 @@ public class frontend extends JFrame {
 
 				List<Map<String, String>> users = connectionServer.listAllUsers();
 				if (users != null) {
+					 tableModel.setRowCount(0);
+					 tableModel.addRow(new Object[]{"Nombre", "Correo"});
 					for (Map<String, String> user : users) {
 						tableModel.addRow(new Object[]{user.get("us_name"), user.get("us_email")});
 					}
